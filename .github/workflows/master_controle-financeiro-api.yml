@@ -19,6 +19,7 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '3.1.102'
+      run: cd webapi
 
     - name: Build with dotnet
       run: dotnet build --configuration Release
@@ -32,4 +33,4 @@ jobs:
         app-name: 'controle-financeiro-api'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_659f27aa45604e518b259762c5ef90ef }}
-        package: ${{env.DOTNET_ROOT}}/myapp 
+        package: ${{env.DOTNET_ROOT}}/myapp
