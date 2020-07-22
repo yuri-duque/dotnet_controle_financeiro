@@ -19,6 +19,8 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '3.1.102'
+
+    - name: alterando pasta
       run: cd webapi
 
     - name: Build with dotnet
