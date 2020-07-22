@@ -20,10 +20,8 @@ jobs:
       with:
         dotnet-version: '3.1.102'
 
-    - name: alterando pasta
-      run: cd webapi
-
     - name: Build with dotnet
+      run: cd webapi
       run: dotnet build --configuration Release
 
     - name: dotnet publish
