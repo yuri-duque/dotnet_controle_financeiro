@@ -9,36 +9,40 @@ namespace Service.Models
 {
     public class UsuarioService
     {
-        private readonly UsuarioRepository _usuarioRepository;
+        private readonly UsuarioRepository _userRepository;
+        private readonly IMapper _mapper;
 
-        public UsuarioService(UsuarioRepository usuarioRepository)
+        public UsuarioService(UsuarioRepository userRepository, IMapper mapper)
         {
-            _usuarioRepository = usuarioRepository;
+            _userRepository = userRepository;
+            _mapper = mapper;
         }
 
         public IList<Usuario> GetAll()
         {
-            return _usuarioRepository.GetAll().ToList();
+            return _userRepository.GetAll().ToList();
         }
 
         public Usuario GetById(long id)
         {
-            return _usuarioRepository.Find(id);
+            return _userRepository.Find(id);
         }
 
-        public void Save(Usuario usuario)
+        public void Save(UsuarioCadastroDTO userDTO)
         {
-            _usuarioRepository.Save(usuario);
+            var user = _mapper.Map<Usuario>(userDTO);
+
+            _userRepository.Save(user);
         }
 
         public void Update(Usuario usuario)
         {
-            _usuarioRepository.Save(usuario);
+            _userRepository.Save(usuario);
         }
 
         public void Delete(long Id)
         {
-            _usuarioRepository.Delete(x => x.Id == Id);
+            _userRepository.Delete(x => x.Id == Id);
         }
 
         public Usuario Login(UsuarioLoginDTO usuarioDTO)
@@ -48,9 +52,9 @@ namespace Service.Models
             return user;
         }
 
-        public bool VerificarDisponibilidadeUsername(string username)
+        public bool CheckUsername(string username)
         {
-            return _usuarioRepository.VerificarExistencia(username);
+            return _userRepository.CheckUsername(username);
         }
     }
 }

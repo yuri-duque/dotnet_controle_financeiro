@@ -16,7 +16,11 @@ namespace Domain.Models
 
         [Required]
         public string Password { get; set; }
-        public string Role { get; set; }
+
+        [Required]
+        public string Mail { get; set; }
+
+        public string Role { get; set; }        
 
         public static void Map(ModelBuilder modelBuilder)
         {

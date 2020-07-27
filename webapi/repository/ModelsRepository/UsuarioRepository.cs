@@ -9,7 +9,7 @@ namespace Repository.ModelsRepository
     {
         public UsuarioRepository(BaseContext ctx): base(ctx) { }
 
-        public bool VerificarExistencia(string username)
+        public bool CheckUsername(string username)
         {
             return !GetAll().Any(x => x.Username.ToLower().Equals(username.ToLower()));
         }
