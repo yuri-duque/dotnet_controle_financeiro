@@ -2,7 +2,24 @@
 
 namespace Domain.DTO
 {
-    public class UsuarioLoginDTO
+    #region Response
+
+    public class UserDTO
+    {
+        public string UserName { get; set; }
+
+        public string Role { get; set; }
+
+        public string Mail { get; set; }
+
+        public string Token { get; set; }
+    }
+
+    #endregion
+
+    #region Request
+
+    public class UserLoginDTO
     {
         [Required(ErrorMessage = "O username é obrigatório")]
         public string Username { get; set; }
@@ -11,10 +28,10 @@ namespace Domain.DTO
         public string Password { get; set; }
     }
 
-    public class UsuarioCadastroDTO
+    public class UserRegisterDTO
     {
         [Required(ErrorMessage = "O username é obrigatório")]
-        public string UserName { get; set; }
+        public string Username { get; set; }
 
         [Required(ErrorMessage = "A senha é obrigatória")]
         [StringLength(16, ErrorMessage = "A senha deve ter entre 3 e 16 caracteres", MinimumLength = 3)]
@@ -28,4 +45,6 @@ namespace Domain.DTO
         [RegularExpression("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$", ErrorMessage = "O email é inválido")]
         public string Mail { get; set; }
     }
+
+    #endregion
 }

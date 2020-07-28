@@ -11,7 +11,7 @@ namespace Repository.ModelsRepository
 
         public bool CheckUsername(string username)
         {
-            return !GetAll().Any(x => x.Username.ToLower().Equals(username.ToLower()));
+            return GetAll().Any(x => x.Username.ToLower().Equals(username.ToLower()));
         }
     }
 }

@@ -2,6 +2,7 @@
 using Domain.DTO;
 using Domain.Models;
 using Repository.ModelsRepository;
+using service.Utils;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,21 +19,35 @@ namespace Service.Models
             _mapper = mapper;
         }
 
-        public IList<Usuario> GetAll()
+        public ServiceResponse<IList<Usuario>> GetAll()
         {
-            return _userRepository.GetAll().ToList();
+            var users = _userRepository.GetAll().ToList();
+
+            return ServiceResponse<IList<Usuario>>.SetSuccess(users);
         }
 
-        public Usuario GetById(long id)
+        public ServiceResponse<Usuario> GetById(long id)
         {
-            return _userRepository.Find(id);
+            var user = _userRepository.Find(id);
+
+            if (user == null)
+                return ServiceResponse<Usuario>.SetError("Usuário não encontrado");
+
+            return ServiceResponse<Usuario>.SetSuccess(user);
         }
 
-        public void Save(UsuarioCadastroDTO userDTO)
+        public ServiceResponse<Usuario> Save(UserRegisterDTO userDTO)
         {
+            var usernameExisting = CheckUsername(userDTO.Username);
+
+            if (usernameExisting)
+                return ServiceResponse<Usuario>.SetError("Username indisponível");
+
             var user = _mapper.Map<Usuario>(userDTO);
 
             _userRepository.Save(user);
+
+            return ServiceResponse<Usuario>.SetSuccess(null);
         }
 
         public void Update(Usuario usuario)
@@ -45,14 +60,23 @@ namespace Service.Models
             _userRepository.Delete(x => x.Id == Id);
         }
 
-        public Usuario Login(UsuarioLoginDTO usuarioDTO)
+        public ServiceResponse<UserDTO> Login(UserLoginDTO usuarioDTO)
         {
-            var user = GetAll().FirstOrDefault(x => x.Username.ToLower().Equals(usuarioDTO.Username.ToLower()) && x.Password.Equals(usuarioDTO.Password));
+            var user = _userRepository.GetAll()
+                .FirstOrDefault(x => x.Username.ToLower().Equals(usuarioDTO.Username.ToLower()) && x.Password.Equals(usuarioDTO.Password));
 
-            return user;
+            if (user == null)
+                return ServiceResponse<UserDTO>.SetError("Usuário não encontrado");
+
+            user.Password = "";
+
+            var userDTO = _mapper.Map<UserDTO>(user);
+            userDTO.Token = TokenService.GenerateToken(user);
+
+            return ServiceResponse<UserDTO>.SetSuccess(userDTO);
         }
 
-        public bool CheckUsername(string username)
+        private bool CheckUsername(string username)
         {
             return _userRepository.CheckUsername(username);
         }

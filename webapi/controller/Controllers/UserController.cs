@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using controller.Utils;
 using Domain.DTO;
 using Domain.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -12,16 +13,18 @@ namespace controller.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class UsuarioController : ControllerBase
+    public class UserController : BaseController
     {
         private readonly UsuarioService _usuarioService;
 
-        public UsuarioController(UsuarioService usuarioService)
+        public UserController(UsuarioService usuarioService)
         {
             _usuarioService = usuarioService;
         }
 
         [HttpGet]
+
+        [HttpPost("login")]
         public ActionResult GetAll()
         {
             try
@@ -35,24 +38,18 @@ namespace controller.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-        [HttpPost("login")]
+        
         [AllowAnonymous]
-        public ActionResult Login(UsuarioLoginDTO userDTO)
+        public ActionResult Login(UserLoginDTO userDTO)
         {
             try
             {
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState.Values.SelectMany(x => x.Errors));
 
-                var usuario = _usuarioService.Login(userDTO);
+                var response = _usuarioService.Login(userDTO);                               
 
-                if (usuario == null)
-                    return NotFound("Usuário não encontrado!");
-
-                var token = TokenService.GenerateToken(usuario);
-
-                return Ok(new { usuario, token });
+                return SetResponse(response);
             }
             catch (Exception ex)
             {
@@ -62,20 +59,16 @@ namespace controller.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Save(UsuarioCadastroDTO user)
+        public ActionResult Save(UserRegisterDTO user)
         {
             try
             {
                 if (!ModelState.IsValid)
-                    return BadRequest(ModelState.Values.SelectMany(x => x.Errors));
+                    return BadRequest(ModelState.Values.Select(x => x.Errors.Select(x => x.ErrorMessage)));
 
-                bool disponivel = _usuarioService.CheckUsername(user.UserName);
-                if (!disponivel)
-                    return BadRequest("Username indisponivel");
+                var response = _usuarioService.Save(user);
 
-                _usuarioService.Save(user);
-
-                return Ok();
+                return SetResponse(response);
             }
             catch (Exception ex)
             {

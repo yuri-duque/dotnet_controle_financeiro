@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using Domain.DTO;
-using Domain.Models;
+using domain.AutoMapper;
 
 namespace Domain.AutoMapper
 {
@@ -8,7 +7,7 @@ namespace Domain.AutoMapper
     {
         public AutoMapping()
         {
-            CreateMap<Usuario, UsuarioLoginDTO>().ReverseMap();
+            new UserMapping();
         }
     }
 }
