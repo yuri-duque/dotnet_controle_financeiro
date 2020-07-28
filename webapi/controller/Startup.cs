@@ -29,7 +29,7 @@ namespace controller
             services.AddCors();
             services.AddControllers();
 
-            services.AddDbContext<BaseContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            IServiceCollection serviceCollection = services.AddDbContext<BaseContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddAutoMapper(typeof(AutoMapping));
 
