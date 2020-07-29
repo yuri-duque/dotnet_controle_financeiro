@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace Repository.ModelsRepository
 {
-    public class UsuarioRepository : Repository<Usuario>
+    public class UserRepository : Repository<User>
     {
-        public UsuarioRepository(BaseContext ctx): base(ctx) { }
+        public UserRepository(BaseContext ctx): base(ctx) { }
 
         public bool CheckUsername(string username)
         {

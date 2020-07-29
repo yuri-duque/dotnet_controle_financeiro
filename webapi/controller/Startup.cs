@@ -35,13 +35,15 @@ namespace Controller
 
             #region Repository
 
-            services.AddScoped<UsuarioRepository>();
+            services.AddScoped<UserRepository>();
+            services.AddScoped<WalletRepository>();
 
             #endregion
 
             #region Service
 
-            services.AddScoped<UsuarioService>();
+            services.AddScoped<UserService>();
+            services.AddScoped<WalletService>();
 
             #endregion
 

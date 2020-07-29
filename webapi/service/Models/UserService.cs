@@ -8,49 +8,49 @@ using System.Linq;
 
 namespace Service.Models
 {
-    public class UsuarioService
+    public class UserService
     {
-        private readonly UsuarioRepository _userRepository;
+        private readonly UserRepository _userRepository;
         private readonly IMapper _mapper;
 
-        public UsuarioService(UsuarioRepository userRepository, IMapper mapper)
+        public UserService(UserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
             _mapper = mapper;
         }
 
-        public ServiceResponse<IList<Usuario>> GetAll()
+        public ServiceResponse<IList<User>> GetAll()
         {
             var users = _userRepository.GetAll().ToList();
 
-            return ServiceResponse<IList<Usuario>>.SetSuccess(users);
+            return ServiceResponse<IList<User>>.SetSuccess(users);
         }
 
-        public ServiceResponse<Usuario> GetById(long id)
+        public ServiceResponse<User> GetById(long id)
         {
             var user = _userRepository.Find(id);
 
             if (user == null)
-                return ServiceResponse<Usuario>.SetError("Usuário não encontrado");
+                return ServiceResponse<User>.SetError("Usuário não encontrado");
 
-            return ServiceResponse<Usuario>.SetSuccess(user);
+            return ServiceResponse<User>.SetSuccess(user);
         }
 
-        public ServiceResponse<Usuario> Save(UserRegisterDTO userDTO)
+        public ServiceResponse<User> Save(UserRegisterDTO userDTO)
         {
             var usernameExisting = CheckUsername(userDTO.Username);
 
             if (usernameExisting)
-                return ServiceResponse<Usuario>.SetError("Username indisponível");
+                return ServiceResponse<User>.SetError("Username indisponível");
 
-            var user = _mapper.Map<Usuario>(userDTO);
+            var user = _mapper.Map<User>(userDTO);
 
             _userRepository.Save(user);
 
-            return ServiceResponse<Usuario>.SetSuccess(null);
+            return ServiceResponse<User>.SetSuccess(null);
         }
 
-        public void Update(Usuario usuario)
+        public void Update(User usuario)
         {
             _userRepository.Save(usuario);
         }

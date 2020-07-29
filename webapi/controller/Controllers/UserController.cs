@@ -13,9 +13,9 @@ namespace Controller.Controllers
     [Authorize]
     public class UserController : BaseController
     {
-        private readonly UsuarioService _usuarioService;
+        private readonly UserService _usuarioService;
 
-        public UserController(UsuarioService usuarioService)
+        public UserController(UserService usuarioService)
         {
             _usuarioService = usuarioService;
         }

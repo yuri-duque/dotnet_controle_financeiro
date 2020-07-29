@@ -5,32 +5,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Models
 {
-    [Table("tb_usuario")]
-    public class Usuario
+    public class Wallet
     {
         [Key]
         [Required]
         public long Id { get; set; }
 
         [Required]
-        public string Username { get; set; }
+        [Column(TypeName = "decimal(16,2)")]
+        public decimal Balance { get; set; }
 
-        [Required]
-        public string Password { get; set; }
-
-        [Required]
-        public string Mail { get; set; }
-
-        public string Role { get; set; }
-
-        public IList<Usuario_Conta> Contas { get; set; }
+        public IList<User_Wallet> Users { get; set; }
 
         public static void Map(ModelBuilder modelBuilder)
         {
-            var map = modelBuilder.Entity<Usuario>();
+            var map = modelBuilder.Entity<Wallet>();
             map.Property(x => x.Id).ValueGeneratedOnAdd();
-
-            map.HasIndex(x => x.Username).IsUnique();
         }
     }
 }

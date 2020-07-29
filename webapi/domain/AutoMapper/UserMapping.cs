@@ -8,9 +8,9 @@ namespace Domain.AutoMapper
     {
         public UserMapping()
         {
-            CreateMap<Usuario, UserLoginDTO>().ReverseMap();
-            CreateMap<Usuario, UserRegisterDTO>().ReverseMap();
-            CreateMap<Usuario, UserDTO>().ReverseMap();
+            CreateMap<User, UserLoginDTO>().ReverseMap();
+            CreateMap<User, UserRegisterDTO>().ReverseMap();
+            CreateMap<User, UserDTO>().ReverseMap();
         }
     }
 }
