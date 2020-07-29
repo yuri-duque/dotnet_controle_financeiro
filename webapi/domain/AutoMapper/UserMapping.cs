@@ -2,7 +2,7 @@
 using Domain.DTO;
 using Domain.Models;
 
-namespace domain.AutoMapper
+namespace Domain.AutoMapper
 {
     public class UserMapping : Profile
     {

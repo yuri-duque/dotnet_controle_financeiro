@@ -12,8 +12,11 @@ namespace Repository.Context
             base.OnModelCreating(modelBuilder);
 
             Usuario.Map(modelBuilder);
+            Usuario.Map(modelBuilder);
         }
 
+        public DbSet<Conta> usuarios { get; set; }
+        public DbSet<Usuario> usuarios { get; set; }
         public DbSet<Usuario> usuarios { get; set; }
     }
 }

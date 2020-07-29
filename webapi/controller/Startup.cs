@@ -13,7 +13,7 @@ using Repository.ModelsRepository;
 using Service.Models;
 using System.Text;
 
-namespace controller
+namespace Controller
 {
     public class Startup
     {

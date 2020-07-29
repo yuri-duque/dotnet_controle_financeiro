@@ -1,4 +1,4 @@
-﻿namespace service.Utils
+﻿namespace Service.Utils
 {
     public class ServiceResponse<T>
     {

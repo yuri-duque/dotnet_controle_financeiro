@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,7 +21,9 @@ namespace Domain.Models
         [Required]
         public string Mail { get; set; }
 
-        public string Role { get; set; }        
+        public string Role { get; set; }
+
+        public IList<Usuario_Conta> Contas { get; set; }
 
         public static void Map(ModelBuilder modelBuilder)
         {
