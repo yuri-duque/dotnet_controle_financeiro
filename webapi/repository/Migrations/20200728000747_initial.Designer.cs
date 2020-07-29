@@ -2,10 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repository.Context;
 
-namespace repository.Migrations
+namespace Repository.Migrations
 {
     [DbContext(typeof(BaseContext))]
     [Migration("20200728000747_initial")]

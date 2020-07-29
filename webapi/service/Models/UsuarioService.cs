@@ -2,7 +2,7 @@
 using Domain.DTO;
 using Domain.Models;
 using Repository.ModelsRepository;
-using service.Utils;
+using Service.Utils;
 using System.Collections.Generic;
 using System.Linq;
 

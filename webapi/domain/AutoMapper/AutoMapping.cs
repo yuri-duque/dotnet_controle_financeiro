@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using domain.AutoMapper;
 
 namespace Domain.AutoMapper
 {

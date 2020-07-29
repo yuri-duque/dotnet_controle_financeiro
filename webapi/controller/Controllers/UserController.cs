@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Linq;
-using controller.Utils;
+using Controller.Utils;
 using Domain.DTO;
-using Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Service;
 using Service.Models;
 
-namespace controller.Controllers
+namespace Controller.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

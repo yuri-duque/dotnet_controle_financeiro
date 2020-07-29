@@ -15,8 +15,8 @@ namespace Repository.Context
             Usuario.Map(modelBuilder);
         }
 
-        public DbSet<Conta> usuarios { get; set; }
+        public DbSet<Conta> contas { get; set; }
         public DbSet<Usuario> usuarios { get; set; }
-        public DbSet<Usuario> usuarios { get; set; }
+        public DbSet<Usuario_Conta> usuarios_contas { get; set; }
     }
 }

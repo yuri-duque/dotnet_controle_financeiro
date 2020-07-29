@@ -23,9 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\domain\domain.csproj" />
-    <ProjectReference Include="..\repository\repository.csproj" />
-    <ProjectReference Include="..\service\service.csproj" />
+    <ProjectReference Include="..\domain\Domain.csproj" />
+    <ProjectReference Include="..\repository\Repository.csproj" />
+    <ProjectReference Include="..\service\Service.csproj" />
   </ItemGroup>
 
 
