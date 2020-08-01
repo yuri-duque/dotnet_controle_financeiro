@@ -15,8 +15,8 @@ namespace Domain.Models
             var map = modelBuilder.Entity<User_Wallet>();
             map.HasKey(x => new { x.IdUser, x.IdWallet });
 
-            map.HasOne(xy => xy.User).WithMany(x => x.Wallets).HasForeignKey(xy => xy.IdUser);
-            map.HasOne(xy => xy.Wallet).WithMany(y => y.Users).HasForeignKey(xy => xy.IdWallet);
+            map.HasOne(xy => xy.User).WithMany(x => x.Wallets).HasForeignKey(xy => xy.IdUser).OnDelete(DeleteBehavior.Cascade);
+            map.HasOne(xy => xy.Wallet).WithMany(y => y.Users).HasForeignKey(xy => xy.IdWallet).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

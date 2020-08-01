@@ -10,7 +10,7 @@ namespace Domain.DTO
 
         public string Role { get; set; }
 
-        public string Mail { get; set; }
+        public string Email { get; set; }
 
         public string Token { get; set; }
     }
@@ -43,7 +43,7 @@ namespace Domain.DTO
 
         [Required(ErrorMessage = "O email é obrigatório")]
         [RegularExpression("^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$", ErrorMessage = "O email é inválido")]
-        public string Mail { get; set; }
+        public string Email { get; set; }
     }
 
     #endregion

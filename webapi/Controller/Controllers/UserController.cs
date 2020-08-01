@@ -21,15 +21,13 @@ namespace Controller.Controllers
         }
 
         [HttpGet]
-
-        [HttpPost("login")]
         public ActionResult GetAll()
         {
             try
             {
-                var usuario = _usuarioService.GetAll();
+                var response = _usuarioService.GetAll();
 
-                return Ok(usuario);
+                return SetResponse(response);
             }
             catch (Exception ex)
             {
@@ -38,6 +36,7 @@ namespace Controller.Controllers
         }
         
         [AllowAnonymous]
+        [HttpPost("login")]
         public ActionResult Login(UserLoginDTO userDTO)
         {
             try
@@ -65,6 +64,44 @@ namespace Controller.Controllers
                     return BadRequest(ModelState.Values.Select(x => x.Errors.Select(x => x.ErrorMessage)));
 
                 var response = _usuarioService.Save(user);
+
+                return SetResponse(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("forgot-password")]
+        [AllowAnonymous]
+        public ActionResult ForgotPassword(string email)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState.Values.Select(x => x.Errors.Select(x => x.ErrorMessage)));
+
+                var response = _usuarioService.ForgotPassword(email);
+
+                return SetResponse(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("new-password")]
+        [AllowAnonymous]
+        public ActionResult NewPassword(string verifyCode)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState.Values.Select(x => x.Errors.Select(x => x.ErrorMessage)));
+
+                var response = _usuarioService.NewPassword(verifyCode);
 
                 return SetResponse(response);
             }

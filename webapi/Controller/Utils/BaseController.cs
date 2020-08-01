@@ -11,7 +11,10 @@ namespace Controller.Utils
             if (response.Error)
                 return BadRequest(response);
 
-            return Ok(response);
+            if (response.Data == null)
+                return Ok();
+
+            return Ok(response.Data);
         }
     }
 }

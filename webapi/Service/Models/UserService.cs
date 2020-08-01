@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Domain.DTO;
 using Domain.Models;
-using Repository.ModelsRepository;
+using Repository.Models;
 using Service.Utils;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +45,8 @@ namespace Service.Models
 
             var user = _mapper.Map<User>(userDTO);
 
+            user.Role = "admin";
+
             _userRepository.Save(user);
 
             return ServiceResponse<User>.SetSuccess(null);
@@ -76,9 +78,59 @@ namespace Service.Models
             return ServiceResponse<UserDTO>.SetSuccess(userDTO);
         }
 
+        public ServiceResponse<UserDTO> ForgotPassword(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+                return ServiceResponse<UserDTO>.SetError("Usuário não encontrado");
+
+            var user = _userRepository.FindUserByEmail(email);
+
+            if (user == null)
+                return ServiceResponse<UserDTO>.SetError("Usuário não encontrado");
+
+            user.EmailVerifyCode = GenerateEmailCode();
+
+            _userRepository.Update(user);
+
+            // send email
+
+            return ServiceResponse<UserDTO>.SetSuccess(null);
+        }
+
+        public ServiceResponse<UserDTO> NewPassword(string verifyCode)
+        {
+            if (string.IsNullOrEmpty(verifyCode))
+                return ServiceResponse<UserDTO>.SetError("Usuário não encontrado");
+
+            var user = _userRepository.FindUserByVerifyCode(verifyCode.ToUpper());
+
+            if (user == null)
+                return ServiceResponse<UserDTO>.SetError("Usuário não encontrado");
+
+            user.EmailVerifyCode = null;
+
+            _userRepository.Update(user);
+
+            var userDTO = _mapper.Map<UserDTO>(user);
+
+            return ServiceResponse<UserDTO>.SetSuccess(userDTO);
+        }
+
         private bool CheckUsername(string username)
         {
             return _userRepository.CheckUsername(username);
+        }
+
+        private string GenerateEmailCode()
+        {
+            var code = GenerateCode.EmailCode();
+
+            var user = _userRepository.FindUserByVerifyCode(code);
+
+            if (user == null)
+                return code;
+
+            return GenerateEmailCode();
         }
     }
 }

@@ -3,7 +3,7 @@ using Repository.Context;
 using System;
 using System.Linq;
 
-namespace Repository.ModelsRepository
+namespace Repository.Models
 {
     public class UserRepository : Repository<User>
     {
@@ -12,6 +12,16 @@ namespace Repository.ModelsRepository
         public bool CheckUsername(string username)
         {
             return GetAll().Any(x => x.Username.ToLower().Equals(username.ToLower()));
+        }
+
+        public User FindUserByEmail(string email)
+        {
+            return GetAll().FirstOrDefault(x => x.Email.Equals(email));
+        }
+
+        public User FindUserByVerifyCode(string verifyCode)
+        {
+            return GetAll().FirstOrDefault(x => x.EmailVerifyCode.Equals(verifyCode));
         }
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Repository.Context;
-using Repository.ModelsRepository;
+using Repository.Models;
 using Service.Models;
 using System.Text;
 

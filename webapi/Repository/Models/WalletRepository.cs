@@ -1,7 +1,7 @@
 ﻿using Domain.Models;
 using Repository.Context;
 
-namespace Repository.ModelsRepository
+namespace Repository.Models
 {
     public class WalletRepository : Repository<Wallet>
     {

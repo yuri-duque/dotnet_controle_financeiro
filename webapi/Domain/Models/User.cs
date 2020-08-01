@@ -17,7 +17,9 @@ namespace Domain.Models
         public string Password { get; set; }
 
         [Required]
-        public string Mail { get; set; }
+        public string Email { get; set; }
+
+        public string EmailVerifyCode { get; set; }
 
         public string Role { get; set; }
 
