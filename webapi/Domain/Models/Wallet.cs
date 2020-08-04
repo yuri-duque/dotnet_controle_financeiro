@@ -15,7 +15,12 @@ namespace Domain.Models
         [Column(TypeName = "decimal(16,2)")]
         public decimal Balance { get; set; }
 
+        //Relationship
+
         public IList<User_Wallet> Users { get; set; }
+
+        public IList<Income> incomes { get; set; }
+        public IList<Expense> expenses { get; set; }
 
         public static void Map(ModelBuilder modelBuilder)
         {

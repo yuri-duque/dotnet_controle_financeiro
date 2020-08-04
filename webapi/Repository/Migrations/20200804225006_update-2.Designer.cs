@@ -2,46 +2,22 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repository.Context;
 
 namespace Repository.Migrations
 {
     [DbContext(typeof(BaseContext))]
-    partial class BaseContextModelSnapshot : ModelSnapshot
+    [Migration("20200804225006_update-2")]
+    partial class update2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("Domain.Models.Expense", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("DateRegister")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<long>("IdWallet")
-                        .HasColumnType("bigint");
-
-                    b.Property<decimal>("Value")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdWallet");
-
-                    b.ToTable("expenses");
-                });
 
             modelBuilder.Entity("Domain.Models.Income", b =>
                 {
@@ -131,15 +107,6 @@ namespace Repository.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("wallets");
-                });
-
-            modelBuilder.Entity("Domain.Models.Expense", b =>
-                {
-                    b.HasOne("Domain.Models.Wallet", "wallet")
-                        .WithMany("expenses")
-                        .HasForeignKey("IdWallet")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Models.Income", b =>

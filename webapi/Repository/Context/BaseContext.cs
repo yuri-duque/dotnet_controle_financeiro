@@ -11,13 +11,17 @@ namespace Repository.Context
         {
             base.OnModelCreating(modelBuilder);
 
-            Wallet.Map(modelBuilder);
+            Expense.Map(modelBuilder);
+            Income.Map(modelBuilder);
             User.Map(modelBuilder);
             User_Wallet.Map(modelBuilder);
+            Wallet.Map(modelBuilder);
         }
 
-        public DbSet<Wallet> wallets { get; set; }
+        public DbSet<Expense> expenses { get; set; }
+        public DbSet<Income> incomes { get; set; }
         public DbSet<User> usuarios { get; set; }
         public DbSet<User_Wallet> users_wallets { get; set; }
+        public DbSet<Wallet> wallets { get; set; }
     }
 }

@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Models
 {
-    public class User
+    public class Income
     {
         [Key]
         [Required]
@@ -15,26 +14,21 @@ namespace Domain.Models
         public DateTime DateRegister { get; set; } = DateTime.Now;
 
         [Required]
-        public string Username { get; set; }
+        public string Description { get; set; }
 
         [Required]
-        public string Password { get; set; }
+        public decimal Value { get; set; }
 
         [Required]
-        public string Email { get; set; }
-
-        public string EmailVerifyCode { get; set; }
-
-        public string Role { get; set; }
-
-        public IList<User_Wallet> Wallets { get; set; }
+        public long IdWallet { get; set; }
+        public Wallet wallet { get; set; }
 
         public static void Map(ModelBuilder modelBuilder)
         {
-            var map = modelBuilder.Entity<User>();
+            var map = modelBuilder.Entity<Income>();
             map.Property(x => x.Id).ValueGeneratedOnAdd();
 
-            map.HasIndex(x => x.Username).IsUnique();
+            map.HasOne(x => x.wallet).WithMany(x => x.incomes).HasForeignKey(x => x.IdWallet).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
