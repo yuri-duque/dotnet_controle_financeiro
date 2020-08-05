@@ -78,15 +78,18 @@ namespace Controller
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
 
-            app.UseRouting();
-
-            app.UseCors(x => x
-                .AllowAnyOrigin()
+            app.UseCors(x =>
+            {
+                x
+                .WithOrigins("http://localhost:8080")
                 .AllowAnyMethod()
-                .AllowAnyHeader());
+                .AllowAnyHeader()
+                .AllowCredentials();
+            });
 
+            app.UseHttpsRedirection();
+            app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
 
