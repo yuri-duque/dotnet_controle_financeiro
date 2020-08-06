@@ -14,10 +14,11 @@ namespace Domain.DTO
     {
         public long Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "O valor inicial da conta é obrigatório!")]
         public decimal Balance { get; set; }
 
-        public long IdUser { get; set; }
+        [Required(ErrorMessage = "O nome da conta é obrigatório!")]
+        public string Name { get; set; }
     }
 
     #endregion
