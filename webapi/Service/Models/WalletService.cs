@@ -4,6 +4,8 @@ using Domain.Models;
 using Repository.Models;
 using Service.Utils;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Service.Models
 {
@@ -18,22 +20,22 @@ namespace Service.Models
             _mapper = mapper;
         }
 
-        public ServiceResponse<IList<User>> GetAll()
+        public ServiceResponse<IList<Wallet>> GetAll()
         {
-            var users = _userRepository.GetAll().ToList();
+            var wallets = _walletRepository.GetAll().ToList();
 
-            return ServiceResponse<IList<User>>.SetSuccess(users);
+            return ServiceResponse<IList<Wallet>>.SetSuccess(wallets);
         }
 
-        public ServiceResponse<User> GetById(long id)
-        {
-            var user = _userRepository.Find(id);
+        //public ServiceResponse<User> GetById(long id)
+        //{
+        //    var user = _userRepository.Find(id);
 
-            if (user == null)
-                return ServiceResponse<User>.SetError("Usuário não encontrado");
+        //    if (user == null)
+        //        return ServiceResponse<User>.SetError("Usuário não encontrado");
 
-            return ServiceResponse<User>.SetSuccess(user);
-        }
+        //    return ServiceResponse<User>.SetSuccess(user);
+        //}
 
         public ServiceResponse<Wallet> Save(WalletFormDTO walletDTO, long idUser)
         {
