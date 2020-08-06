@@ -52,15 +52,15 @@ namespace Service.Models
             return ServiceResponse<User>.SetSuccess(null);
         }
 
-        public void Update(User usuario)
-        {
-            _userRepository.Save(usuario);
-        }
+        //public void Update(User usuario)
+        //{
+        //    _userRepository.Save(usuario);
+        //}
 
-        public void Delete(long Id)
-        {
-            _userRepository.Delete(x => x.Id == Id);
-        }
+        //public void Delete(long Id)
+        //{
+        //    _userRepository.Delete(x => x.Id == Id);
+        //}
 
         public ServiceResponse<UserDTO> Login(UserLoginDTO usuarioDTO)
         {
