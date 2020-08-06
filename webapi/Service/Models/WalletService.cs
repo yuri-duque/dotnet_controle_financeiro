@@ -18,7 +18,7 @@ namespace Service.Models
 
         public object Save(WalletFormDTO walletDTO)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
