@@ -26,9 +26,10 @@ namespace Controller.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState.Values.Select(x => x.Errors.Select(x => x.ErrorMessage)));
 
-                long idUser = 0;
+                //Descobrir como pegar o id do usuário pelo token
+                //walletDTO.IdUser = 0;
 
-                var response = _walletService.Save(walletDTO, idUser);
+                var response = _walletService.Save(walletDTO);
 
                 return SetResponse(response);
             }

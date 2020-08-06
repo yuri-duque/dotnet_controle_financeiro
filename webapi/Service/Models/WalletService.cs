@@ -16,7 +16,7 @@ namespace Service.Models
             _mapper = mapper;
         }
 
-        public object Save(WalletFormDTO walletDTO, long idUser)
+        public object Save(WalletFormDTO walletDTO)
         {
             throw new NotImplementedException();
         }

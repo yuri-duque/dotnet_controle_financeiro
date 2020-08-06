@@ -21,7 +21,7 @@ namespace Domain.DTO
         [Required]
         public decimal Balance { get; set; }
 
-        public List<long> IdUsers { get; set; }
+        public long IdUser { get; set; }
     }
 
     #endregion
