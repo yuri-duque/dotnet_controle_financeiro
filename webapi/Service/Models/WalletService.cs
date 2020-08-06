@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Domain.DTO;
 using Repository.Models;
+using System;
 
 namespace Service.Models
 {
@@ -12,6 +14,11 @@ namespace Service.Models
         {
             _walletRepository = walletRepository;
             _mapper = mapper;
-        }        
+        }
+
+        public object Save(WalletFormDTO walletDTO, long idUser)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

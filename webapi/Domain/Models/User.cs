@@ -27,7 +27,7 @@ namespace Domain.Models
 
         public string Role { get; set; }
 
-        public IList<User_Wallet> Wallets { get; set; }
+        public IList<Wallet> Wallets { get; set; }
 
         public static void Map(ModelBuilder modelBuilder)
         {

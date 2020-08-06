@@ -30,7 +30,7 @@ namespace Domain.Models
             var map = modelBuilder.Entity<Expense>();
             map.Property(x => x.Id).ValueGeneratedOnAdd();
 
-            map.HasOne(x => x.wallet).WithMany(x => x.expenses).HasForeignKey(x => x.IdWallet).OnDelete(DeleteBehavior.Cascade);
+            map.HasOne(x => x.wallet).WithMany(x => x.Expenses).HasForeignKey(x => x.IdWallet).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

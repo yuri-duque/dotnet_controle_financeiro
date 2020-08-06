@@ -28,7 +28,7 @@ namespace Domain.Models
             var map = modelBuilder.Entity<Income>();
             map.Property(x => x.Id).ValueGeneratedOnAdd();
 
-            map.HasOne(x => x.wallet).WithMany(x => x.incomes).HasForeignKey(x => x.IdWallet).OnDelete(DeleteBehavior.Cascade);
+            map.HasOne(x => x.wallet).WithMany(x => x.Incomes).HasForeignKey(x => x.IdWallet).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
