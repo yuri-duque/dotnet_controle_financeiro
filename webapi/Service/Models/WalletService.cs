@@ -27,15 +27,15 @@ namespace Service.Models
             return ServiceResponse<IList<Wallet>>.SetSuccess(wallets);
         }
 
-        //public ServiceResponse<User> GetById(long id)
-        //{
-        //    var user = _userRepository.Find(id);
+        public ServiceResponse<Wallet> GetById(long id)
+        {
+            var wallet = _walletRepository.Find(id);
 
-        //    if (user == null)
-        //        return ServiceResponse<User>.SetError("Usuário não encontrado");
+            if (wallet == null)
+                return ServiceResponse<Wallet>.SetError("Carteira não encontrado");
 
-        //    return ServiceResponse<User>.SetSuccess(user);
-        //}
+            return ServiceResponse<Wallet>.SetSuccess(wallet);
+        }
 
         public ServiceResponse<Wallet> Save(WalletFormDTO walletDTO, long idUser)
         {
