@@ -4,6 +4,7 @@ using Controller.Utils;
 using Domain.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 using Service.Models;
 
 namespace Controller.Controllers
@@ -25,6 +26,8 @@ namespace Controller.Controllers
         {
             try
             {
+                var accessToken = Request.Headers[HeaderNames.Authorization];
+
                 var response = _usuarioService.GetAll();
 
                 return SetResponse(response);
