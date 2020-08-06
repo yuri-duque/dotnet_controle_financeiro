@@ -29,9 +29,9 @@ namespace Controller.Controllers
                 //Descobrir como pegar o id do usuário pelo token
                 //walletDTO.IdUser = 0;
 
-                var response = _walletService.Save(walletDTO);
+                //var response = _walletService.Save(walletDTO);
 
-                return SetResponse(response);
+                return SetResponse(null);
             }
             catch (Exception ex)
             {

@@ -15,6 +15,9 @@ namespace Domain.Models
         [Column(TypeName = "decimal(16,2)")]
         public decimal Balance { get; set; }
 
+        [Required]
+        public string Name { get; set; }
+
         //Relationship
         public long IdUser { get; set; }
         public User User { get; set; }

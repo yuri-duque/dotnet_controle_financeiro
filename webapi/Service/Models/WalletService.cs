@@ -16,9 +16,9 @@ namespace Service.Models
             _mapper = mapper;
         }
 
-        public object Save(WalletFormDTO walletDTO)
-        {
+        //public object Save(WalletFormDTO walletDTO)
+        //{
             
-        }
+        //}
     }
 }
