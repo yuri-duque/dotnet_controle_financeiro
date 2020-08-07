@@ -3,7 +3,6 @@ using Domain.DTO;
 using Domain.Models;
 using Repository.Models;
 using Service.Utils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -47,15 +46,5 @@ namespace Service.Models
 
             return ServiceResponse<Wallet>.SetSuccess(null);
         }
-
-        //public void Update(User usuario)
-        //{
-        //    _userRepository.Save(usuario);
-        //}
-
-        //public void Delete(long Id)
-        //{
-        //    _userRepository.Delete(x => x.Id == Id);
-        //}
     }
 }

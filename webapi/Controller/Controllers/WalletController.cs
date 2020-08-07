@@ -27,9 +27,12 @@ namespace Controller.Controllers
                     return BadRequest(ModelState.Values.Select(x => x.Errors.Select(x => x.ErrorMessage)));
 
                 //Descobrir como pegar o id do usuário pelo token
-                long idUser = 0;
+                long? idUser = GetIdUser();
 
-                var response = _walletService.Save(walletDTO, idUser);
+                if (idUser is null)
+                    return NotFound("Usuário não encontrado!");
+
+                var response = _walletService.Save(walletDTO, Convert.ToUInt16(idUser));
 
                 return SetResponse(null);
             }
