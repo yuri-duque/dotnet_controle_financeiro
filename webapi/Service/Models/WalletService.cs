@@ -19,9 +19,9 @@ namespace Service.Models
             _mapper = mapper;
         }
 
-        public ServiceResponse<IList<Wallet>> GetAll()
+        public ServiceResponse<IList<Wallet>> GetAll(long idUser)
         {
-            var wallets = _walletRepository.GetAll().ToList();
+            var wallets = _walletRepository.GetAllByUser(idUser).ToList();
 
             return ServiceResponse<IList<Wallet>>.SetSuccess(wallets);
         }

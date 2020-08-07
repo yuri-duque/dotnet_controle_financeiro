@@ -195,6 +195,36 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GetAll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIyIiwidW5pcXVlX25hbWUiOiJ5dXJpIiwicm9sZSI6ImFkbWluIiwibmJmIjoxNTk2NzU5OTQ0LCJleHAiOjE1OTY3NjcxNDQsImlhdCI6MTU5Njc1OTk0NH0.M4sDpjIFTnaad0EwrVNxEWFILuggKqt6bg8V0wDoJA4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44324/api/wallet",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44324",
+							"path": [
+								"api",
+								"wallet"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}

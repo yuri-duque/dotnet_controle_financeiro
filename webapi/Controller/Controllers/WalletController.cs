@@ -18,6 +18,27 @@ namespace Controller.Controllers
             _walletService = walletService;
         }
 
+        [HttpGet]
+        public ActionResult GetAll()
+        {
+            try
+            {
+                //Pegando o id do usuario pelo token
+                long? idUser = GetIdUser();
+
+                if (idUser is null)
+                    return NotFound("Usuário não encontrado!");
+
+                var response = _walletService.GetAll(Convert.ToUInt16(idUser));
+
+                return SetResponse(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost]
         public ActionResult Save(WalletFormDTO walletDTO)
         {
@@ -26,7 +47,7 @@ namespace Controller.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState.Values.Select(x => x.Errors.Select(x => x.ErrorMessage)));
 
-                //Descobrir como pegar o id do usuário pelo token
+                //Pegando o id do usuario pelo token
                 long? idUser = GetIdUser();
 
                 if (idUser is null)
