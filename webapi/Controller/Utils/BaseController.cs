@@ -16,7 +16,7 @@ namespace Controller.Utils
                 return Ok();
 
             if (response.Error)
-                return BadRequest(response);
+                return BadRequest(response.ErrorMessage);
 
             if (response.Data == null)
                 return Ok();
