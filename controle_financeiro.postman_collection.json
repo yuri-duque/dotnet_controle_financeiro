@@ -1,0 +1,204 @@
+{
+	"info": {
+		"_postman_id": "1d4a1da5-5d46-4e5f-9d53-2c48b853e2ca",
+		"name": "controle_financeiro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Save",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"yuri\",\r\n    \"password\": \"123123\",\r\n    \"confirmPassword\": \"123123\",\r\n    \"email\": \"yuri@handcom.com.br\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44324/api/user",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44324",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"yuri\",\r\n    \"password\": \"123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44324/api/user/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44324",
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Inl1cmkiLCJyb2xlIjoiYWRtaW4iLCJuYmYiOjE1OTYyNTExNTksImV4cCI6MTU5NjI1ODM1MSwiaWF0IjoxNTk2MjUxMTU5fQ.LZOTk9pJQXEeVr7DTSFM8jUCUZEi9TU3ZcmjPxJMgPs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44324/api/user",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44324",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ForgotPassword",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44324/api/user/forgot-password?email=yuri@handcom.com.br",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44324",
+							"path": [
+								"api",
+								"user",
+								"forgot-password"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "yuri@handcom.com.br"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NewPassword",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44324/api/user/new-password?verifyCode=5E3E7D",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44324",
+							"path": [
+								"api",
+								"user",
+								"new-password"
+							],
+							"query": [
+								{
+									"key": "verifyCode",
+									"value": "5E3E7D"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Wallet",
+			"item": [
+				{
+					"name": "Save",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIyIiwidW5pcXVlX25hbWUiOiJ5dXJpIiwicm9sZSI6ImFkbWluIiwibmJmIjoxNTk2NzU5OTQ0LCJleHAiOjE1OTY3NjcxNDQsImlhdCI6MTU5Njc1OTk0NH0.M4sDpjIFTnaad0EwrVNxEWFILuggKqt6bg8V0wDoJA4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"balance\" : 0,\r\n    \"name\" : \"carteira\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44324/api/wallet",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44324",
+							"path": [
+								"api",
+								"wallet"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
