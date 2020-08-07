@@ -26,8 +26,6 @@ namespace Controller.Controllers
         {
             try
             {
-                var accessToken = Request.Headers[HeaderNames.Authorization];
-
                 var response = _usuarioService.GetAll();
 
                 return SetResponse(response);
