@@ -34,7 +34,7 @@ namespace Controller.Controllers
 
                 var response = _walletService.Save(walletDTO, Convert.ToUInt16(idUser));
 
-                return SetResponse(null);
+                return SetResponse(response);
             }
             catch (Exception ex)
             {

@@ -2,6 +2,7 @@
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
 
 namespace Controller.Utils
 {
@@ -11,6 +12,9 @@ namespace Controller.Utils
     {
         protected ActionResult SetResponse(dynamic response)
         {
+            if(response == null)
+                return Ok();
+
             if (response.Error)
                 return BadRequest(response);
 
@@ -20,7 +24,7 @@ namespace Controller.Utils
             return Ok(response.Data);
         }
 
-        public string GetToken()
+        protected string GetToken()
         {
             var token = HttpContext.Request.Headers["Authorization"].FirstOrDefault();
 
@@ -32,7 +36,7 @@ namespace Controller.Utils
             return token;
         }
 
-        public long? GetIdUser()
+        protected long? GetIdUser()
         {
             try
             {
@@ -47,7 +51,7 @@ namespace Controller.Utils
 
                 return Convert.ToInt64(idUser);
             }
-            catch
+            catch(Exception ex)
             {
                 return null;
             }

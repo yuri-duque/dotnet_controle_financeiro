@@ -44,7 +44,7 @@ namespace Service.Models
 
             _walletRepository.Save(wallet);
 
-            return ServiceResponse<Wallet>.SetSuccess(null);
+            return ServiceResponse<Wallet>.SetSuccess(wallet);
         }
     }
 }
