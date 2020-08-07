@@ -9,8 +9,8 @@ using Repository.Context;
 namespace Repository.Migrations
 {
     [DbContext(typeof(BaseContext))]
-    [Migration("20200804225006_update-2")]
-    partial class update2
+    [Migration("20200807224249_inicial")]
+    partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,6 +18,32 @@ namespace Repository.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("Domain.Models.Expense", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("DateRegister")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<long>("IdWallet")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("Value")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdWallet");
+
+                    b.ToTable("expenses");
+                });
 
             modelBuilder.Entity("Domain.Models.Income", b =>
                 {
@@ -80,21 +106,6 @@ namespace Repository.Migrations
                     b.ToTable("usuarios");
                 });
 
-            modelBuilder.Entity("Domain.Models.User_Wallet", b =>
-                {
-                    b.Property<long>("IdUser")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("IdWallet")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("IdUser", "IdWallet");
-
-                    b.HasIndex("IdWallet");
-
-                    b.ToTable("users_wallets");
-                });
-
             modelBuilder.Entity("Domain.Models.Wallet", b =>
                 {
                     b.Property<long>("Id")
@@ -104,31 +115,43 @@ namespace Repository.Migrations
                     b.Property<decimal>("Balance")
                         .HasColumnType("decimal(16,2)");
 
+                    b.Property<long>("IdUser")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("IdUser");
+
                     b.ToTable("wallets");
+                });
+
+            modelBuilder.Entity("Domain.Models.Expense", b =>
+                {
+                    b.HasOne("Domain.Models.Wallet", "wallet")
+                        .WithMany("Expenses")
+                        .HasForeignKey("IdWallet")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Models.Income", b =>
                 {
                     b.HasOne("Domain.Models.Wallet", "wallet")
-                        .WithMany("incomes")
+                        .WithMany("Incomes")
                         .HasForeignKey("IdWallet")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Domain.Models.User_Wallet", b =>
+            modelBuilder.Entity("Domain.Models.Wallet", b =>
                 {
                     b.HasOne("Domain.Models.User", "User")
                         .WithMany("Wallets")
                         .HasForeignKey("IdUser")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Models.Wallet", "Wallet")
-                        .WithMany("Users")
-                        .HasForeignKey("IdWallet")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
