@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using Repository.Context;
 using System.Linq;
 
@@ -15,7 +16,7 @@ namespace Repository.Models
 
         public Wallet GetById(long idUser, long id)
         {
-            return GetAll().FirstOrDefault(x => x.Id == id && x.IdUser == idUser);
+            return GetAll().Include(x => x.Incomes).Include(x => x.Expenses).FirstOrDefault(x => x.Id == id && x.IdUser == idUser);
         }
     }
 }
