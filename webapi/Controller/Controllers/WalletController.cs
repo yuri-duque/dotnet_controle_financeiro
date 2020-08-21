@@ -29,7 +29,28 @@ namespace Controller.Controllers
                 if (idUser is null)
                     return NotFound("Usuário não encontrado!");
 
-                var response = _walletService.GetAll(Convert.ToUInt16(idUser));
+                var response = _walletService.GetAll(Convert.ToInt64(idUser));
+
+                return SetResponse(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult GetById(long id)
+        {
+            try
+            {
+                //Pegando o id do usuario pelo token
+                long? idUser = GetIdUser();
+
+                if (idUser is null)
+                    return NotFound("Usuário não encontrado!");
+
+                var response = _walletService.GetById(Convert.ToInt64(idUser), id);
 
                 return SetResponse(response);
             }

@@ -28,9 +28,9 @@ namespace Service.Models
             return ServiceResponse<IList<WalletListDTO>>.SetSuccess(wallets);
         }
 
-        public ServiceResponse<Wallet> GetById(long id)
+        public ServiceResponse<Wallet> GetById(long idUser, long id)
         {
-            var wallet = _walletRepository.Find(id);
+            var wallet = _walletRepository.GetById(idUser, id);
 
             if (wallet == null)
                 return ServiceResponse<Wallet>.SetError("Carteira não encontrado");
