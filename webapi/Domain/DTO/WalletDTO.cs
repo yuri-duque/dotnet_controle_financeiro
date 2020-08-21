@@ -4,7 +4,14 @@ namespace Domain.DTO
 {
     #region Response
 
+    public class WalletListDTO
+    {
+        public long Id { get; set; }
 
+        public decimal Balance { get; set; }
+
+        public string Name { get; set; }
+    }
 
     #endregion
 

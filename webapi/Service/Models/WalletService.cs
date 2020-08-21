@@ -19,13 +19,13 @@ namespace Service.Models
             _mapper = mapper;
         }
 
-        public ServiceResponse<IList<WalletFormDTO>> GetAll(long idUser)
+        public ServiceResponse<IList<WalletListDTO>> GetAll(long idUser)
         {
             var walletsDTO = _walletRepository.GetAllByUser(idUser).ToList();
 
-            var wallets = _mapper.Map<IList<WalletFormDTO>>(walletsDTO);
+            var wallets = _mapper.Map<IList<WalletListDTO>>(walletsDTO);
 
-            return ServiceResponse<IList<WalletFormDTO>>.SetSuccess(wallets);
+            return ServiceResponse<IList<WalletListDTO>>.SetSuccess(wallets);
         }
 
         public ServiceResponse<Wallet> GetById(long id)

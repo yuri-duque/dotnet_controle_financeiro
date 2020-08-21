@@ -9,6 +9,7 @@ namespace Domain.AutoMapper
         public WalletMapping()
         {
             CreateMap<Wallet, WalletFormDTO>().ReverseMap();
+            CreateMap<Wallet, WalletListDTO>().ReverseMap();
         }
     }
 }
