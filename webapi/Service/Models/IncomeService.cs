@@ -2,12 +2,12 @@
 
 namespace Service.Models
 {
-    public class IncomeRepository
+    public class IncomeService
     {
-        private readonly IncomeRepository _incomeRepository;
+        private readonly IncomeService _incomeRepository;
         private readonly IMapper _mapper;
 
-        public IncomeRepository(IncomeRepository incomeRepository, IMapper mapper)
+        public IncomeService(IncomeService incomeRepository, IMapper mapper)
         {
             _incomeRepository = incomeRepository;
             _mapper = mapper;
