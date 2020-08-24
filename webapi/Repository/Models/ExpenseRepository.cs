@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Domain.Models;
+using Repository.Context;
 
 namespace Repository.Models
 {
-    class ExpenseRepository : Repository<Income>
+    public class ExpenseRepository : Repository<Expense>
     {
-        public IncomeRepository(BaseContext ctx) : base(ctx) { }
+        public ExpenseRepository(BaseContext ctx) : base(ctx) { }
     }
 }
