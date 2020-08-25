@@ -35,6 +35,8 @@ namespace Controller
 
             #region Repository
 
+            services.AddScoped<ExpenseRepository>();
+            services.AddScoped<IncomeRepository>();
             services.AddScoped<UserRepository>();
             services.AddScoped<WalletRepository>();
 
@@ -42,6 +44,8 @@ namespace Controller
 
             #region Service
 
+            services.AddScoped<ExpenseService>();
+            services.AddScoped<IncomeService>();
             services.AddScoped<UserService>();
             services.AddScoped<WalletService>();
 
