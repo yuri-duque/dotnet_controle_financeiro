@@ -228,6 +228,80 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Income",
+			"item": [
+				{
+					"name": "GetAllByWallet",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwidW5pcXVlX25hbWUiOiJ5dXJpIiwicm9sZSI6ImFkbWluIiwibmJmIjoxNTk4MzE0NDE3LCJleHAiOjE1OTgzMjE2MTcsImlhdCI6MTU5ODMxNDQxN30.I0Da7WdG1zvk6ny49o_dFxifJgVTWLbUCHkpNX9V1j0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44324/api/income/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44324",
+							"path": [
+								"api",
+								"income",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Expense",
+			"item": [
+				{
+					"name": "GetAllByWallet",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwidW5pcXVlX25hbWUiOiJ5dXJpIiwicm9sZSI6ImFkbWluIiwibmJmIjoxNTk4MzE0NDE3LCJleHAiOjE1OTgzMjE2MTcsImlhdCI6MTU5ODMxNDQxN30.I0Da7WdG1zvk6ny49o_dFxifJgVTWLbUCHkpNX9V1j0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44324/api/expense/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44324",
+							"path": [
+								"api",
+								"expense",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}

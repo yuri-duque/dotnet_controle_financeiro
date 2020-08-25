@@ -19,7 +19,7 @@ namespace Controller.Controllers
         }
 
         [HttpGet("{idWallet}")]
-        public ActionResult GetAll(long idWallet)
+        public ActionResult GetAllByWallet(long idWallet)
         {
             try
             {
