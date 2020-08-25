@@ -1,10 +1,17 @@
 ﻿using Domain.Models;
 using Repository.Context;
+using System;
+using System.Linq;
 
 namespace Repository.Models
 {
     public class ExpenseRepository : Repository<Expense>
     {
         public ExpenseRepository(BaseContext ctx) : base(ctx) { }
+
+        public IQueryable<Expense> GetAllExpenses(long idUser, long idWallet)
+        {
+            return GetAll().Where(x => x.IdWallet == idWallet && x.wallet.IdUser == idUser);
+        }
     }
 }
