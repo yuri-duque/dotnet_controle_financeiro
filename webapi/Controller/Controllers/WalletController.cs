@@ -1,5 +1,6 @@
 ﻿using Controller.Utils;
 using Domain.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Models;
 using System;
@@ -9,6 +10,7 @@ namespace Controller.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class WalletController : BaseController
     {
         private readonly WalletService _walletService;
