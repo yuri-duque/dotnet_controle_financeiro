@@ -31,6 +31,15 @@ namespace Service.Models
             return ServiceResponse<IList<ExpenseListDTO>>.SetSuccess(expensesDTO);
         }
 
+        public ServiceResponse<IList<ExpenseFormDTO>> GetById(long idUser, long idExpense)
+        {
+            var expense = _expenseRepository.GetById(idUser, idExpense);
+
+            var expenseDTO = _mapper.Map<IList<ExpenseFormDTO>>(expense);
+
+            return ServiceResponse<IList<ExpenseFormDTO>>.SetSuccess(expenseDTO);
+        }
+
         public ServiceResponse<Expense> Save(long idUser, ExpenseFormDTO expenseDTO)
         {
             var walletExist = _walletRepository.GetById(idUser, expenseDTO.IdWallet);
