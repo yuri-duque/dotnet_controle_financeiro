@@ -62,6 +62,28 @@ namespace Controller.Controllers
             }
         }
 
-        
+        [HttpPost]
+        public ActionResult Save(ExpenseFormDTO expenseDTO)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState.Values.Select(x => x.Errors.Select(x => x.ErrorMessage)));
+
+                //Pegando o id do usuario pelo token
+                long? idUser = GetIdUser();
+
+                if (idUser is null)
+                    return NotFound("Usuário não encontrado!");
+
+                var response = _expenseService.Save(Convert.ToUInt16(idUser), expenseDTO);
+
+                return SetResponse(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
