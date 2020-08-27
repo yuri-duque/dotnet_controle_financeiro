@@ -12,5 +12,10 @@ namespace Repository.Models
         {
             return GetAll().Where(x => x.IdWallet == idWallet && x.wallet.IdUser == idUser);
         }
+
+        public Income GetById(long idUser, long idIncome)
+        {
+            return GetAll().FirstOrDefault(x => x.Id == idIncome && x.wallet.IdUser == idUser);
+        }
     }
 }
