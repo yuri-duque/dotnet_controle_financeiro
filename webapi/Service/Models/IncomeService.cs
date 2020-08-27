@@ -40,6 +40,19 @@ namespace Service.Models
             return ServiceResponse<IList<IncomeFormDTO>>.SetSuccess(incomeDTO);
         }
 
-        
+        public ServiceResponse<IncomeFormDTO> Save(long idUser, IncomeFormDTO incomeDTO)
+        {
+            var walletExist = _walletRepository.GetById(idUser, incomeDTO.IdWallet);
+
+            if (walletExist == null)
+                return ServiceResponse<IncomeFormDTO>.SetError("Carteira não encontrada!");
+
+            var income = _mapper.Map<Income>(incomeDTO);
+            income.DateRegister = DateTime.Now;
+
+            _incomeRepository.Save(income);
+
+            return ServiceResponse<IncomeFormDTO>.SetSuccess(incomeDTO);
+        }
     }
 }
