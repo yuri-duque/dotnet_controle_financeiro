@@ -1,8 +1,10 @@
 ﻿using Controller.Utils;
+using Domain.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Models;
 using System;
+using System.Linq;
 
 namespace Controller.Controllers
 {
@@ -38,5 +40,28 @@ namespace Controller.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("{id}")]
+        public ActionResult GetById(long id)
+        {
+            try
+            {
+                //Pegando o id do usuario pelo token
+                long? idUser = GetIdUser();
+
+                if (idUser is null)
+                    return NotFound("Usuário não encontrado!");
+
+                var response = _incomeService.GetById(Convert.ToInt64(idUser), id);
+
+                return SetResponse(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        
     }
 }
