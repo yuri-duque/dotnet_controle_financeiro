@@ -62,6 +62,28 @@ namespace Controller.Controllers
             }
         }
 
-        
+        [HttpPost]
+        public ActionResult Save(IncomeFormDTO incomeDTO)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState.Values.Select(x => x.Errors.Select(x => x.ErrorMessage)));
+
+                //Pegando o id do usuario pelo token
+                long? idUser = GetIdUser();
+
+                if (idUser is null)
+                    return NotFound("Usuário não encontrado!");
+
+                var response = _incomeService.Save(Convert.ToUInt16(idUser), incomeDTO);
+
+                return SetResponse(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
