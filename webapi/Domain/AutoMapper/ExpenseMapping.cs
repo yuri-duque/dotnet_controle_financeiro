@@ -9,6 +9,7 @@ namespace Domain.AutoMapper
         public ExpenseMapping()
         {
             CreateMap<Expense, ExpenseListDTO>().ReverseMap();
+            CreateMap<Expense, ExpenseFormDTO>().ReverseMap();
         }
     }
 }
