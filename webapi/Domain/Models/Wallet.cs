@@ -11,8 +11,7 @@ namespace Domain.Models
         [Required]
         public long Id { get; set; }
 
-        [Required]
-        [Column(TypeName = "decimal(16,2)")]
+        [Required, Column(TypeName = "decimal(16,2)")]
         public decimal Balance { get; set; }
 
         [Required]
