@@ -11,7 +11,10 @@ namespace Repository.Models
 
         public IQueryable<Wallet> GetAllByUser(long idUser)
         {
-            return GetAll().Where(x => x.IdUser == idUser);
+            return GetAll()
+                .Include(x => x.Incomes)
+                .Include(x => x.Expenses)
+                .Where(x => x.IdUser == idUser);
         }
 
         public Wallet GetById(long idUser, long id)
