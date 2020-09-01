@@ -21,11 +21,27 @@ namespace Service.Models
 
         public ServiceResponse<IList<WalletListDTO>> GetAll(long idUser)
         {
-            var walletsDTO = _walletRepository.GetAllByUser(idUser).ToList();
+            var wallets = _walletRepository.GetAllByUser(idUser).ToList();
 
-            var wallets = _mapper.Map<IList<WalletListDTO>>(walletsDTO);
+            wallets = wallets.Select(x =>
+            {
+                if (x.Incomes.Any())
+                {
+                    decimal valor = x.Incomes.Sum(x => x.Value);
+                    x.Balance += valor;
+                }
 
-            return ServiceResponse<IList<WalletListDTO>>.SetSuccess(wallets);
+                if (x.Expenses.Any())
+                {
+                    decimal valor = x.Expenses.Sum(x => x.Value);
+                    x.Balance -= valor;
+                }
+                return x;
+            }).ToList();
+
+            var walletsDTO = _mapper.Map<IList<WalletListDTO>>(wallets);
+
+            return ServiceResponse<IList<WalletListDTO>>.SetSuccess(walletsDTO);
         }
 
         public ServiceResponse<Wallet> GetById(long idUser, long id)
