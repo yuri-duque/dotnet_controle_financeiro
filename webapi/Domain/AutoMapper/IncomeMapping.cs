@@ -9,6 +9,7 @@ namespace Domain.AutoMapper
         public IncomeMapping()
         {
             CreateMap<Income, IncomeListDTO>().ReverseMap();
+            CreateMap<Income, IncomeFormDTO>().ReverseMap();
         }
     }
 }
