@@ -6,7 +6,10 @@ namespace Domain.AutoMapper
     {
         public AutoMapping()
         {
+            new ExpenseMapping();
+            new IncomeMapping();
             new UserMapping();
+            new WalletMapping();
         }
     }
 }
