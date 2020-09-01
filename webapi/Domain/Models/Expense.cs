@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Models
 {
@@ -18,7 +17,7 @@ namespace Domain.Models
         [Required]
         public string Description { get; set; }
 
-        [Required]
+        [Required, Column(TypeName = "decimal(65, 2)")]
         public decimal Value { get; set; }
 
         [Required]
